@@ -32,3 +32,5 @@
 ..\OUTPUT\diskio.o: ..\CODE\STM32F10x_FWLib\inc\misc.h
 ..\OUTPUT\diskio.o: ..\CODE\HARDWARE\Sdcard_spi.h
 ..\OUTPUT\diskio.o: ..\CODE\SYSTEM\sys.h
+..\OUTPUT\diskio.o: ..\CODE\SYSTEM\usart.h
+..\OUTPUT\diskio.o: C:\Keil-ARM\ARM\RV31\INC\stdio.h
