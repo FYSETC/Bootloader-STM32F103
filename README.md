@@ -27,14 +27,21 @@ stm32flash -w Bootloader-STM32F103.hex -v -i rts,-dtr /dev/ttyUSB0
 
 The firmware boot address is 0x8010000 , so if you want to use this bootloader you need to change the firmware location to 0x8010000.
 
-And if you are using our stm32f103 boards for 3d printing. You need to add the following lines 
+And if you are using our stm32f103 boards for 3d printing. You need to add the following lines (or check Marlin PR: https://github.com/MarlinFirmware/Marlin/pull/18179)
 
 ```
+# Relocate firmware from 0x08000000 to 0x08010000
 for define in env['CPPDEFINES']:
     if define[0] == "VECT_TAB_ADDR":
         env['CPPDEFINES'].remove(define)
 env['CPPDEFINES'].append(("VECT_TAB_ADDR", "0x08010000"))
-env.Replace(LDSCRIPT_PATH="buildroot/share/PlatformIO/ldscripts/fysetc_aio_ii.ld")
+
+custom_ld_script = os.path.abspath("buildroot/share/PlatformIO/ldscripts/fysetc_stm32f103rc.ld")
+for i, flag in enumerate(env["LINKFLAGS"]):
+    if "-Wl,-T" in flag:
+        env["LINKFLAGS"][i] = "-Wl,-T" + custom_ld_script
+    elif flag == "-T":
+        env["LINKFLAGS"][i + 1] = custom_ld_script
 ```
 
 to the file "Marlin\Marlin\buildroot\share\PlatformIO\scripts\fysetc_STM32F1.py"
@@ -42,7 +49,7 @@ to the file "Marlin\Marlin\buildroot\share\PlatformIO\scripts\fysetc_STM32F1.py"
 You can add it after the line 
 
 ```
-platform = env.PioPlatform()
+Import("env")
 ```
 
 And then rebuild the 3d printer firmware.
