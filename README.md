@@ -5,6 +5,10 @@ This is the bootloader for STM32F103 chips
 
 # Usage
 
+## Build
+
+This project uses KEIL software to build the project.  Open Stm32f103Bootloader.uvproj file in Bootloader-STM32F103\Bootloader-STM32F103\PROJ and click the build button.
+
 ## Upload bootloader
 
 There is a pre-build hex file in the OUTPUT folder of this firmware. You need to upload it to your board first.
@@ -63,6 +67,25 @@ And then rebuild the 3d printer firmware.
 5. And wait for 10~20 seconds , it will be done. 
 
 You can connect the usb cable to monitor the process.
+
+## Change the bootloader flash address
+
+You need to modify Marlin and this Bootloader 
+
+Marlin:
+
+Change following 0x08010000 your address. It's in STM32F103RC_fysetc.py file
+\#env['CPPDEFINES'].append(("VECT_TAB_ADDR", "0x08010000"))
+And change following 64K to your address corresponding size. It's in fysetc_stm32f103rc.ld file
+rom (rx) : ORIGIN = 0x08010000, LENGTH = 256K - 64K
+
+*note : 64K is for 0x10000*
+
+Bootloader:
+
+Change following 0x08010000 to your address
+
+ \#define BOOTLOADER_FLASH_ADDR   ( 0x08010000 ) , it's in [Bootloader-STM32F103/CODE/APP/bootloaders.h](https://github.com/FYSETC/Bootloader-STM32F103/blob/a24533345d43a1d7f16c798c13b1336a395f395f/CODE/APP/bootloaders.h#L26)
 
 # Issues
 
