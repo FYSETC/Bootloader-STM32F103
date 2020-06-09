@@ -70,7 +70,7 @@ You can connect the usb cable to monitor the process.
 
 ## Change the bootloader flash address
 
-You need to modify Marlin and this Bootloader 
+First , the size of bootloader need at least `32k` , so the user-defined flash size need to be larger than `0x8008000` ,You need to modify Marlin and this Bootloader 
 
 ### Marlin:
 
@@ -86,7 +86,7 @@ And change following `64K` to your address corresponding size. It's in `fysetc_s
 rom (rx) : ORIGIN = 0x08010000, LENGTH = 256K - 64K
 ```
 
-*note : 64K is for 0x10000, as 1K==1024==0x400* 
+***note : 64K is for 0x10000, as 1K==1024==0x400*** 
 
 ### Bootloader:
 
@@ -98,14 +98,14 @@ Change following `0x08010000` to your address,  it's in `Bootloader-STM32F103/CO
 
 ### Example:
 
-You want to change flash address to `0x807000`, `so 0x7000 / 0x400 = 28`, so all lines need to change are
+You want to change flash address to `0x8008000`, `so 0x8000 / 0x400 =32`, so all lines need to change are
 
 ```
-env['CPPDEFINES'].append(("VECT_TAB_ADDR", "0x08007000"))
+env['CPPDEFINES'].append(("VECT_TAB_ADDR", "0x08008000"))
 
-rom (rx) : ORIGIN = 0x08007000, LENGTH = 256K - 28K
+rom (rx) : ORIGIN = 0x08008000, LENGTH = 256K - 32K
 
-#define BOOTLOADER_FLASH_ADDR   ( 0x08007000 )
+#define BOOTLOADER_FLASH_ADDR   ( 0x08008000 )
 ```
 
 # Issues
