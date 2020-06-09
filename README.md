@@ -72,20 +72,41 @@ You can connect the usb cable to monitor the process.
 
 You need to modify Marlin and this Bootloader 
 
-Marlin:
+### Marlin:
 
-Change following 0x08010000 your address. It's in STM32F103RC_fysetc.py file
-\#env['CPPDEFINES'].append(("VECT_TAB_ADDR", "0x08010000"))
-And change following 64K to your address corresponding size. It's in fysetc_stm32f103rc.ld file
+Change following `0x08010000` to your address. It's in `STM32F103RC_fysetc.py` file
+
+```
+env['CPPDEFINES'].append(("VECT_TAB_ADDR", "0x08010000"))
+```
+
+And change following `64K` to your address corresponding size. It's in `fysetc_stm32f103rc.ld` file
+
+```
 rom (rx) : ORIGIN = 0x08010000, LENGTH = 256K - 64K
+```
 
-*note : 64K is for 0x10000*
+*note : 64K is for 0x10000, as 1K==1024==0x400* 
 
-Bootloader:
+### Bootloader:
 
-Change following 0x08010000 to your address
+Change following `0x08010000` to your address,  it's in `Bootloader-STM32F103/CODE/APP/bootloaders.h` file
 
- \#define BOOTLOADER_FLASH_ADDR   ( 0x08010000 ) , it's in [Bootloader-STM32F103/CODE/APP/bootloaders.h](https://github.com/FYSETC/Bootloader-STM32F103/blob/a24533345d43a1d7f16c798c13b1336a395f395f/CODE/APP/bootloaders.h#L26)
+```
+ #define BOOTLOADER_FLASH_ADDR   ( 0x08010000 )
+```
+
+### Example:
+
+You want to change flash address to `0x807000`, `so 0x7000 / 0x400 = 28`, so all lines need to change are
+
+```
+env['CPPDEFINES'].append(("VECT_TAB_ADDR", "0x08007000"))
+
+rom (rx) : ORIGIN = 0x08007000, LENGTH = 256K - 28K
+
+#define BOOTLOADER_FLASH_ADDR   ( 0x08007000 )
+```
 
 # Issues
 
