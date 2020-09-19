@@ -418,16 +418,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Abst</GroupName>
-          <Files>
-            <File>
-              <FileName>a_flash.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\CODE\Abst\a_flash.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>FATFS</GroupName>
           <Files>
             <File>
@@ -470,6 +460,11 @@
               <FileType>1</FileType>
               <FilePath>..\CODE\SYSTEM\usart.c</FilePath>
             </File>
+            <File>
+              <FileName>util.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\CODE\SYSTEM\util.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -479,11 +474,6 @@
               <FileName>init.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\CODE\HARDWARE\init.c</FilePath>
-            </File>
-            <File>
-              <FileName>led.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\CODE\HARDWARE\led.c</FilePath>
             </File>
             <File>
               <FileName>sd_assist.c</FileName>
