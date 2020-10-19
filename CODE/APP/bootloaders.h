@@ -23,7 +23,7 @@ static char *status[]=
 
 #define BOOTLOADER_BIN_ADDR         ( "0:/firmware.bin" )
 #define BOOTLOADER_OLD_BIN_ADDR     ( "0:/old.bin" )
-#define BOOTLOADER_FLASH_ADDR       ( 0x08010000 )
+#define BOOTLOADER_FLASH_ADDR       ( 0x08008000 )
 #define BOOTLOADER_BUF_SIZE         ( 512 )
 #define BOOTLOADER_SECT_SIZE        ( 8 )
 
