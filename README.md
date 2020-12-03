@@ -23,7 +23,7 @@ Power the board with power supply and connect the board to your PC with USB cabl
 
 Double the click "FlyMcu.exe" software and open ```Bootloader-STM32F103.hex``` file.
 
-![1561100540118](E:/Projects/BOARD-FYSETC-CHEETAH/FYSETC-Cheetah/images/Flymcu界面.png)
+![1561100540118](images/Flymcu界面.png)
 
 
 
@@ -79,7 +79,7 @@ dmesg
 
 And you will get message like 
 
-![1562654867797](E:/Projects/BOARD-FYSETC-CHEETAH/FYSETC-Cheetah/images/AIO_f4.png)
+![1562654867797](images/AIO_f4.png)
 
 the ttyUSB0 is the port to communicate with the motherboard.
 
